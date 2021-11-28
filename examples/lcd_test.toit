@@ -13,10 +13,19 @@ D6pin := gpio.Pin.out 16
 D7pin := gpio.Pin.out 15
 
 main:
-  LCDinit   RSpin ENpin D4pin D5pin D6pin D7pin 1 1 // Submit pins, and 0 0 for no cursor, no blink
-  LCDwrite  "#reallytoit" 0 2 // Write text on first line, third column
+  //LCDinit   RSpin ENpin D4pin D5pin D6pin D7pin 1 1 // Submit pins, and 0 0 for no cursor, no blink
+  lcd_init RSpin ENpin D4pin D5pin D6pin D7pin // 1 1 //  Submit pins, and 0 0 for no cursor, no blink
+  //lcd_init 19 23 18 17 16 15
+
+  //LCDwrite  "#reallytoit" 0 2 // Write text on first line, third column
+  lcd_write "#reallytoit" 0 2
+  
   sleep --ms=3000             // Sleep for 3 secs
-  LCDshiftDisplay "right" 2   // Shift entire display two places to the right
+  //LCDshiftDisplay "right" 2   // Shift entire display two places to the right
+  lcd_shift_display 2 //"right" 2
+
   sleep --ms=3000
-  LCDclear                    // Clear display
+  
+  //LCDclear                    // Clear display
+  lcd_clear
   
